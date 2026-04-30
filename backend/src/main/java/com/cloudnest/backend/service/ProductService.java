@@ -30,4 +30,8 @@ public class ProductService {
         existing.setImageUrl(updatedProduct.getImageUrl());
         return productRepository.save(existing);
     }
+
+    public void deleteProduct(UUID id) {
+        productRepository.deleteById(id);
+    }
 }

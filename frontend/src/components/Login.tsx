@@ -44,6 +44,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     }
   };
 
+  const handleOwnerLogin = () => {
+    // Generate a mock JWT for the owner
+    const payload = btoa(JSON.stringify({
+      sub: 'owner@cloudnest.com',
+      firstName: 'Super',
+      lastName: 'Admin',
+      role: 'owner'
+    }));
+    const mockToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${payload}.mocksignature`;
+    onLogin(mockToken);
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-950 font-sans selection:bg-indigo-500/30 p-4">
       <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in duration-500">
@@ -124,6 +136,15 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             {isLogin ? 'Sign up' : 'Sign in'}
           </button>
         </p>
+
+        <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+          <button 
+            onClick={handleOwnerLogin}
+            className="text-xs font-medium text-slate-500 hover:text-slate-300 transition-colors"
+          >
+            Demo: Login as Platform Owner
+          </button>
+        </div>
       </div>
     </div>
   );

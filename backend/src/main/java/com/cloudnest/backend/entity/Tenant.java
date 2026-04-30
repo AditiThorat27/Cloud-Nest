@@ -29,6 +29,9 @@ public class Tenant {
     @Builder.Default
     private String status = "ACTIVE";
 
+    @Builder.Default
+    private String plan = "free";
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 

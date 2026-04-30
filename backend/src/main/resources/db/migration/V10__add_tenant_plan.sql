@@ -1,0 +1,1 @@
+ALTER TABLE tenants ADD COLUMN plan VARCHAR(50) DEFAULT 'free';

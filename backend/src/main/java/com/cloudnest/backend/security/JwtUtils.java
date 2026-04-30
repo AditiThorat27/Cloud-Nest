@@ -42,6 +42,15 @@ public class JwtUtils {
         return buildToken(extraClaims, userDetails, jwtExpirationMs);
     }
 
+    public String generateToken(UserDetails userDetails, String tenantId, String firstName, String lastName, String subdomain) {
+        Map<String, Object> extraClaims = new HashMap<>();
+        extraClaims.put("tenantId", tenantId);
+        extraClaims.put("firstName", firstName);
+        extraClaims.put("lastName", lastName);
+        extraClaims.put("subdomain", subdomain);
+        return buildToken(extraClaims, userDetails, jwtExpirationMs);
+    }
+
     private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
         return Jwts
                 .builder()

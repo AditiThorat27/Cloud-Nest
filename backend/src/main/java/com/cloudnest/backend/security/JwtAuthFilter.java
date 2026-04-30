@@ -31,6 +31,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         final String jwt;
         final String userEmail;
 
+        // Super-admin routes are fully public — skip ALL JWT processing
+        if (request.getServletPath().startsWith("/api/v1/super-admin")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;

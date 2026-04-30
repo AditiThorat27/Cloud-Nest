@@ -47,7 +47,7 @@ public class AuthService {
                     .orElseThrow(() -> new RuntimeException("User not found"));
             
             com.cloudnest.backend.security.UserDetailsImpl userDetails = new com.cloudnest.backend.security.UserDetailsImpl(user);
-            String jwtToken = jwtUtils.generateToken(userDetails, user.getTenantId().toString());
+            String jwtToken = jwtUtils.generateToken(userDetails, user.getTenantId().toString(), user.getFirstName(), user.getLastName(), request.getSubdomain());
             return new AuthResponse(jwtToken, "Login successful");
         } catch (Exception e) {
             e.printStackTrace();
